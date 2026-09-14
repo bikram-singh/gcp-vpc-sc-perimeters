@@ -8,8 +8,8 @@
 
 A seven-part, console-driven hands-on lab documenting how **VPC Service Controls (VPC SC)** actually behaves in a live GCP organization — perimeters, VPC-network-scoped perimeters, access levels, ingress/egress rules, scoped policies, perimeter bridges, and Shared VPC — with every test command, every denial, and every fix captured as a real screenshot.
 
-📄 **Companion write-up:** [Securing GCP with VPC Service Controls: IAM Isn't Enough](./vpc-service-controls-medium-article.md)
-🧰 **Command reference:** [gcloud CLI equivalents for every part](./docs/commands-reference.md)
+- 📖 **Read the Full Article:** [Securing GCP with VPC Service Controls: IAM Isn't Enough](https://github.com/bikram-singh/gcp-vpc-sc-perimeters/blob/main/vpc-service-controls-medium-article.md)
+- 🧰 **Command Reference:** [gcloud CLI equivalents for every part](https://github.com/bikram-singh/gcp-vpc-sc-perimeters/blob/main/docs/commands-reference.md)
 
 ---
 
@@ -105,8 +105,9 @@ untrust-project-x     →  granted Editor on trust-project-ok's service account
 | 5️⃣ | [Scoped Policies](#5️⃣-scoped-policies) | How do I delegate perimeter admin to a folder/project owner? |
 | 6️⃣ | [Perimeter Bridges](#6️⃣-perimeter-bridges) | How do two already-protected projects talk to each other? |
 | 7️⃣ | [VPC Service Controls with Shared VPC](#7️⃣-vpc-service-controls-with-shared-vpc) | Can dev/prod/staging networks in one host project have different postures? |
+| 8️⃣ | 📸 [Snapshots](https://github.com/bikram-singh/gcp-vpc-sc-perimeters/tree/main/docs/snapshots) | All GCP Console screenshots for every part |
 
-Full narrative walkthrough with every test command and screenshot context lives in the [Medium article](./vpc-service-controls-medium-article.md). This README summarizes the reference configuration and the gotchas.
+Full narrative walkthrough with every test command and screenshot context lives in the [Medium article](https://github.com/bikram-singh/gcp-vpc-sc-perimeters/blob/main/vpc-service-controls-medium-article.md). This README summarizes the reference configuration and the gotchas.
 
 ---
 
@@ -256,6 +257,10 @@ Restricts : storage.googleapis.com
 - A VPC network **cannot** belong to more than one perimeter
 - A VPC network **cannot** be used inside a perimeter **bridge**
 - If a network's parent project is already in a bridge, that network can't be added to a regular perimeter
+
+---
+
+8️⃣📸 [Snapshots](https://github.com/bikram-singh/gcp-vpc-sc-perimeters/tree/main/docs/snapshots)
 
 ---
 
