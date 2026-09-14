@@ -64,25 +64,25 @@ untrust-project-x     →  granted Editor on trust-project-ok's service account
 ```
                          Organization: gcpcloudhub.in
                                     │
-                    ┌───────────────┴────────────────┐
-                    │        Access Context Manager    │
-                    │   (org-level access policy: my-org-policy)
-                    └───────────────┬────────────────┘
+                    ┌───────────────┴──────────────────────────────┐
+                    │        Access Context Manager                │
+                    │   (org-level access policy: my-org-policy)   │
+                    └───────────────┬──────────────────────────────┘
                                     │
         ┌───────────────────────────┼───────────────────────────┐
         │                           │                           │
- ┌──────▼───────┐           ┌───────▼───────┐           ┌───────▼───────┐
- │ trust-project-│           │untrust-project-│           │ Shared VPC     │
- │      ok        │◄──bridge─►│      x        │           │ host-project-333│
- │ trust-custom- │  ingress/ │untrust-custom- │           │  ├─ dev-vpc    │
- │     vpc        │  egress  │     vpc        │           │  ├─ prod-vpc   │
- └───────────────┘   rules   └───────────────┘           │  └─ staging-vpc│
-                                                            └───────┬───────┘
+ ┌──────▼─────────┐           ┌─────▼───────────┐           ┌───▼─────────────┐
+ │ trust-project- │           │untrust-project- │           │ Shared VPC      │
+ │      ok        │◄──bridge─►│      x          │           │ host-project-333│
+ │ trust-custom-  │  ingress/ │untrust-custom-  │           │  ├─ dev-vpc     │
+ │     vpc        │  egress   │     vpc         │           │  ├─ prod-vpc    │
+ └────────────────┘   rules   └─────────────────┘           │  └─ staging-vpc │
+                                                            └───────┬─────────┘
                                                                     │ attached
                                                         ┌───────────┴───────────┐
-                                                        │ trust-project-ok       │
-                                                        │ untrust-project-x      │
-                                                        │ (service projects)     │
+                                                        │ trust-project-ok      │
+                                                        │ untrust-project-x     │
+                                                        │ (service projects)    │
                                                         └───────────────────────┘
 
   Perimeter types used:      Regular  →  protects a project or a VPC network
