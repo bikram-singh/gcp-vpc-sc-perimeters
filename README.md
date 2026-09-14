@@ -9,6 +9,7 @@
 A seven-part, console-driven hands-on lab documenting how **VPC Service Controls (VPC SC)** actually behaves in a live GCP organization — perimeters, VPC-network-scoped perimeters, access levels, ingress/egress rules, scoped policies, perimeter bridges, and Shared VPC — with every test command, every denial, and every fix captured as a real screenshot.
 
 📄 **Companion write-up:** [Securing GCP with VPC Service Controls: IAM Isn't Enough](./vpc-service-controls-medium-article.md)
+🧰 **Command reference:** [gcloud CLI equivalents for every part](./docs/commands-reference.md)
 
 ---
 
@@ -64,25 +65,25 @@ untrust-project-x     →  granted Editor on trust-project-ok's service account
 ```
                          Organization: gcpcloudhub.in
                                     │
-                    ┌───────────────┴──────────────────────────────┐
-                    │        Access Context Manager                │
-                    │   (org-level access policy: my-org-policy)   │
-                    └───────────────┬──────────────────────────────┘
+                    ┌───────────────┴────────────────┐
+                    │        Access Context Manager    │
+                    │   (org-level access policy: my-org-policy)
+                    └───────────────┬────────────────┘
                                     │
         ┌───────────────────────────┼───────────────────────────┐
         │                           │                           │
- ┌──────▼─────────┐           ┌─────▼───────────┐           ┌───▼─────────────┐
- │ trust-project- │           │untrust-project- │           │ Shared VPC      │
- │      ok        │◄──bridge─►│      x          │           │ host-project-333│
- │ trust-custom-  │  ingress/ │untrust-custom-  │           │  ├─ dev-vpc     │
- │     vpc        │  egress   │     vpc         │           │  ├─ prod-vpc    │
- └────────────────┘   rules   └─────────────────┘           │  └─ staging-vpc │
-                                                            └───────┬─────────┘
+ ┌──────▼───────┐           ┌───────▼───────┐           ┌───────▼───────┐
+ │ trust-project-│           │untrust-project-│           │ Shared VPC     │
+ │      ok        │◄──bridge─►│      x        │           │ host-project-333│
+ │ trust-custom- │  ingress/ │untrust-custom- │           │  ├─ dev-vpc    │
+ │     vpc        │  egress  │     vpc        │           │  ├─ prod-vpc   │
+ └───────────────┘   rules   └───────────────┘           │  └─ staging-vpc│
+                                                            └───────┬───────┘
                                                                     │ attached
                                                         ┌───────────┴───────────┐
-                                                        │ trust-project-ok      │
-                                                        │ untrust-project-x     │
-                                                        │ (service projects)    │
+                                                        │ trust-project-ok       │
+                                                        │ untrust-project-x      │
+                                                        │ (service projects)     │
                                                         └───────────────────────┘
 
   Perimeter types used:      Regular  →  protects a project or a VPC network
@@ -284,7 +285,8 @@ Restricts : storage.googleapis.com
 ├── README.md
 ├── vpc-service-controls-medium-article.md
 └── docs/
-    └── screenshots/
+    ├── commands-reference.md               (gcloud CLI equivalent for every part)
+    └── snapshots/
         ├── part1-first-perimeter/
         ├── part2-vpc-network-perimeter/
         ├── part3-access-levels/
@@ -293,6 +295,8 @@ Restricts : storage.googleapis.com
         ├── part6-perimeter-bridge/
         └── part7-shared-vpc/
 ```
+
+Each screenshot is a real GCP Console (or Cloud Shell / SSH-in-browser) capture from the lab — conceptual slide images from the source deck were excluded.
 
 ---
 
